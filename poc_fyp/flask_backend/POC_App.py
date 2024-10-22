@@ -14,13 +14,13 @@ app = Flask(__name__)
 CORS(app)
 
 # Load the US model 
-model = tf.keras.models.load_model('./poc_fyp/flask_backend/poc_household_income_sufficiency_model_rnn.h5')
+household_rnn_model = tf.keras.models.load_model('./poc_fyp/flask_backend/poc_household_income_sufficiency_model_rnn.h5')
 
 # Load the scalers for input (X) and output (y)
 scaler_feature = joblib.load('./poc_fyp/flask_backend/scaler_feature.pkl')
 scaler_target = joblib.load('./poc_fyp/flask_backend/scaler_target.pkl')
 
-@app.route('/predict-us', methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def predict_us():
     try:
         # Get the JSON data from the request
@@ -31,22 +31,24 @@ def predict_us():
         total = float(data['total'])
         median_family_income = float(data['median_family_income'])
         num_counties_in_st = int(data['num_counties_in_st'])
-        n_children = int(data['n_children'])
-        single_parent = int(data['single_parent'])
-        n_members = int(data['n_members'])
+        number_of_parents = int(data['number_of_parents'])
+        number_of_children = int(data['number_of_children'])
+        number_of_family_members = int(data['number_of_family_members'])
 
         print("Parsed input data for the model:", {
             "total": total,
             "median_family_income": median_family_income,
             "num_counties_in_st": num_counties_in_st,
-            "n_children": n_children,
-            "single_parent": single_parent,
-            "n_members": n_members
+            "number_of_parents": number_of_parents,
+            "number_of_children": number_of_children,
+            "number_of_family_members": number_of_family_members
         })
+        
+        
 
         # Create input DataFrame for the model
-        household_data_input_model = pd.DataFrame([[total, median_family_income, num_counties_in_st, n_children, single_parent, n_members]],
-                                        columns=['total', 'median_family_income', 'num_counties_in_st', 'n_children', 'n_parents', 'n_members'])
+        household_data_input_model = pd.DataFrame([[number_of_parents, number_of_children, number_of_family_members, median_family_income,total,num_counties_in_st]],
+                                        columns=['number_of_parents', 'number_of_children', 'number_of_family_members','median_family_income','total','num_counties_in_st'])
 
         # Scale the input data using the pre-loaded scaler
         poc_scaled = scaler_feature.transform(household_data_input_model)
@@ -61,7 +63,7 @@ def predict_us():
         poc_household_income_sufficiency_prediction = scaler_target.inverse_transform(poc_prediction_scaled)
 
         # Calculate total predicted expenses and financial stability
-        predicted_expenses = predictions.sum(axis=1)
+        predicted_expenses = poc_household_income_sufficiency_prediction.sum(axis=1)
         predicted_financial_stability = median_family_income / predicted_expenses[0]
 
         # Prepare the response with predictions mapped to proper keys
