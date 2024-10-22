@@ -14,11 +14,11 @@ app = Flask(__name__)
 CORS(app)
 
 # Load the US model 
-household_rnn_model = tf.keras.models.load_model('./poc_fyp/flask_backend/poc_household_income_sufficiency_model_rnn.h5')
+household_rnn_model = tf.keras.models.load_model('flask_backend\poc_household_income_sufficiency_model_rnn.h5')
 
 # Load the scalers for input (X) and output (y)
-scaler_feature = joblib.load('./poc_fyp/flask_backend/scaler_feature.pkl')
-scaler_target = joblib.load('./poc_fyp/flask_backend/scaler_target.pkl')
+scaler_feature = joblib.load('flask_backend\scaler_feature.pkl')
+scaler_target = joblib.load('flask_backend\scaler_target.pkl')
 
 @app.route('/predict', methods=['POST'])
 def predict_us():
@@ -54,7 +54,8 @@ def predict_us():
         poc_scaled = scaler_feature.transform(household_data_input_model)
 
         # Reshape the data to fit the model's expected input shape
-        poc_rnn = poc_scaled.reshape((poc_scaled.shape[0], poc_scaled.shape[1], 1))
+        #6 is the number of features
+        poc_rnn = poc_scaled.reshape((1,1, 6))
 
         # Make predictions using the loaded model
         poc_prediction_scaled = household_rnn_model.predict(poc_rnn)
@@ -68,13 +69,13 @@ def predict_us():
 
         # Prepare the response with predictions mapped to proper keys
         response = {
-            'Housing': float(predictions[0, 0]),
-            'Food': float(predictions[0, 1]),
-            'Transportation': float(predictions[0, 2]),
-            'Healthcare': float(predictions[0, 3]),
-            'Other Necessities': float(predictions[0, 4]),  # Adjust key name to match frontend
-            'Childcare': float(predictions[0, 5]),
-            'Taxes': float(predictions[0, 6]),
+            'Housing': float(poc_household_income_sufficiency_prediction[0, 0]),
+            'Food': float(poc_household_income_sufficiency_prediction[0, 1]),
+            'Transportation': float(poc_household_income_sufficiency_prediction[0, 2]),
+            'Healthcare': float(poc_household_income_sufficiency_prediction[0, 3]),
+            'Other Necessities': float(poc_household_income_sufficiency_prediction[0, 4]),  # Adjust key name to match frontend
+            'Childcare': float(poc_household_income_sufficiency_prediction[0, 5]),
+            'Taxes': float(poc_household_income_sufficiency_prediction[0, 6]),
             'Total Predicted Expenses': float(predicted_expenses[0]),
             'Predicted Financial Stability': float(predicted_financial_stability)
         }
