@@ -1,50 +1,66 @@
-.home_main_container{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: hsla(0, 0%, 100%, 0.814);
+/** @format */
+
+.home_main_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: hsla(0, 0%, 100%, 0.814);
 }
 
-.home_sub_container{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: hsl(196, 27%, 92%);
+.home_sub_container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: hsl(196, 27%, 92%);
 }
-.img_container{
-    width: 50%;
-    display: flex;
-    flex-direction: column;
-    height: 100vh;
-    margin: 0 50px
+.img_container {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0 0px;
+  background-image: url("poc.jpg");
+  background-size: cover;
+  background-position: 100vh;
 }
-.img_container_text{
-    /* background-color: rgb(239, 145, 14); */
-    background-color: rgba(138, 220, 206, 0.781);
-    border-radius: 10px;
+.img_container_text {
+  text-align: center;
+  background-color: rgb(216, 169, 27);
+  width: 100%;
+}
+.description_text {
+  font-size: 12px;
+  color: black;
+  background-color: rgba(255, 255, 255, 0.347);
+  padding-left: 10px;
+}
+.blank_div {
+  height: 5px;
+  background-color: rgb(2, 0, 100);
 }
 
-img{
-    justify-content: center;
-    border-radius: 60%;
+button {
+  color: hsl(0, 0%, 100%);
+  background-color: green;
+  border-color: none;
+  border-style: none;
+  height: 50px;
+  width: 200px;
+  font-size: larger; 
 }
 
-button{
-    color:hsl(0, 0%, 100%);
-    background-color: green;
+button:hover{
+    background-color: rgba(0, 128, 0, 0.649);
     border-radius: 20px;
-    border-color: none;
-    border-style: none;
-    height: 50px;
-    width: 200px;
-    font-size: larger;
 }
 
-h4{
-    color:rgb(2, 0, 100)
+h5 {
+  padding-left: 10px;
+  color: rgb(2, 0, 100);
+  text-transform: uppercase;
 }

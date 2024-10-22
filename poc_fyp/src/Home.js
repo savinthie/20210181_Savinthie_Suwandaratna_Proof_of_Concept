@@ -2,20 +2,34 @@
 
 import React from "react";
 import "./Home.css";
-import poclogo from "./poc.jpg";
 function Home() {
   return (
     <>
       <div className='home_main_container'>
         <div className='img_container'>
-         <div className = 'img_container_text'>   
-        <h4>Household income sufficiency prediction</h4>
-        </div>
-          <img src={poclogo} alt='poc_logo_image' />
+          <div className='img_container_text'>
+            <h5>Household income sufficiency predictor</h5>
+          </div>
+          <div className ='blank_div'></div>
+          <div className='description_text'>
+            <p>
+              This is a<b> Final year 2024/25 project</b> focusing on predicting
+              the <b>Household income sufficiency indicator</b> via deep
+              learning technologies.
+            </p>
+            <p>
+              Dear Users, please gain the below listed experience through this
+              proof of concept.
+            </p>
+            <ul>
+              Stay tuned to
+              <li> Get your future household expenses predicted</li>
+              <li>Get an idea on your household income sufficiency</li>
+            </ul>
+          </div>
         </div>
 
         <div className='home_sub_container'>
-         
           <button>Check out the POC</button>
         </div>
       </div>
