@@ -151,7 +151,7 @@ function Predict() {
                   <td>${predictions?.Total_Predicted_Expenses?.toFixed(2)}</td>
                 </tr>
                 <tr>
-                  <td>Micro econmomic level household income sufficiency indicator</td>
+                  <td>Micro economic level household income sufficiency indicator</td>
                   <td className={predictions?.Predicted_Financial_Stability > 1 ? 'sufficient' : 'insufficient'}>{predictions?.Predicted_Financial_Stability?.toFixed(2)}</td>
                 </tr>
               </tbody>
