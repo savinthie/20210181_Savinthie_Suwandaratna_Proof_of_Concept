@@ -1,0 +1,46 @@
+button{
+    margin-top:20px;
+    margin-bottom:20px;
+    background-color: rgb(2, 0, 100);
+    color:white;
+    height: 40px;
+    width: 100px;
+    border-radius: 100px;
+}
+
+
+body{
+    background-color:hsl(196, 27%, 92%);
+}
+
+.img_container_text{
+    margin-top: -20px;
+}
+.form_container{
+    justify-content: center;
+    align-items: center;
+    background-color:hsl(196, 27%, 92%);
+    padding:0 20%
+}
+.form_subcontainer{
+    background-color:white;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.result_container{
+   padding-bottom: 20px;
+}
+
+.sufficient{
+    background-color: rgb(21, 196, 170);
+    border-radius: 50px;
+    text-align: center;
+}
+
+.insufficient{
+    background-color: rgba(255, 0, 0, 0.712);
+    border-radius: 50px;
+    text-align: center;
+}

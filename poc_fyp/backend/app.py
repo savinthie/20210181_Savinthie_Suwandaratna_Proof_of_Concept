@@ -14,11 +14,12 @@ app = Flask(__name__)
 CORS(app)
 
 # Load the US model 
-household_rnn_model = tf.keras.models.load_model('flask_backend\poc_household_income_sufficiency_model_rnn.h5')
+household_rnn_model = tf.keras.models.load_model('backend\poc_household_income_sufficiency_model_rnn.h5')
+
 
 # Load the scalers for input (X) and output (y)
-scaler_feature = joblib.load('flask_backend\scaler_feature.pkl')
-scaler_target = joblib.load('flask_backend\scaler_target.pkl')
+scaler_feature = joblib.load('backend\scaler_feature.pkl')
+scaler_target = joblib.load('backend\scaler_target.pkl')
 
 @app.route('/predict', methods=['POST'])
 def predict_us():
@@ -54,7 +55,7 @@ def predict_us():
         poc_scaled = scaler_feature.transform(household_data_input_model)
 
         # Reshape the data to fit the model's expected input shape
-        #6 is the number of features
+        # this is a very important section within the model else, there would be prediction errors
         poc_rnn = poc_scaled.reshape((1,1, 6))
 
         # Make predictions using the loaded model
@@ -73,11 +74,11 @@ def predict_us():
             'Food': float(poc_household_income_sufficiency_prediction[0, 1]),
             'Transportation': float(poc_household_income_sufficiency_prediction[0, 2]),
             'Healthcare': float(poc_household_income_sufficiency_prediction[0, 3]),
-            'Other Necessities': float(poc_household_income_sufficiency_prediction[0, 4]),  # Adjust key name to match frontend
+            'Other_Necessities': float(poc_household_income_sufficiency_prediction[0, 4]),  # Adjust key name to match frontend
             'Childcare': float(poc_household_income_sufficiency_prediction[0, 5]),
             'Taxes': float(poc_household_income_sufficiency_prediction[0, 6]),
-            'Total Predicted Expenses': float(predicted_expenses[0]),
-            'Predicted Financial Stability': float(predicted_financial_stability)
+            'Total_Predicted_Expenses': float(predicted_expenses[0]),
+            'Predicted_Financial_Stability': float(predicted_financial_stability)
         }
 
         print("Predictions sent back to frontend:", response)

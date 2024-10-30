@@ -36,7 +36,7 @@ function Home() {
         </div>
 
         <div className='home_sub_container'>
-          <button onClick={handleCheckoutPoc}>Check out the POC</button>
+          <button id='home_btn' onClick={handleCheckoutPoc}>Check out the POC</button>
         </div>
       </div>
     </>

@@ -24,13 +24,13 @@
   flex-direction: column;
   height: 100vh;
   margin: 0 0px;
-  background-image: url("poc.jpg");
+  background-image: url("logo3.jpg");
   background-size: cover;
   background-position: 100vh;
 }
 .img_container_text {
   text-align: center;
-  background-color: rgb(216, 169, 27);
+  background-color: white;
   width: 100%;
 }
 .description_text {
@@ -44,19 +44,20 @@
   background-color: rgb(2, 0, 100);
 }
 
-button {
-  color: hsl(0, 0%, 100%);
-  background-color: green;
+#home_btn {
+  color: white ;
+  background-color: rgb(2, 0, 100);
   border-color: none;
   border-style: none;
   height: 50px;
   width: 200px;
-  font-size: larger; 
+  font-size: larger;
+  border-radius: 20px; 
 }
 
-button:hover{
-    background-color: rgba(0, 128, 0, 0.649);
-    border-radius: 20px;
+#home_btn:hover{
+    background-color: rgb(2, 0, 100);
+    
 }
 
 h5 {
