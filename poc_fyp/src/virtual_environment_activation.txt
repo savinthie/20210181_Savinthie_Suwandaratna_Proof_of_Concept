@@ -1,6 +1,0 @@
--CREATING A VIRTUAL ENVIRONMENT-
-#MAC OS
-python3 -m venv poc_virtual_env 
-#Window
-python -m venv poc_virtual_env
-

@@ -1,0 +1,30 @@
+
+Step 1 : Create a virtual environment
+#MAC OS
+python3 -m venv poc_virtual_env 
+#Window
+python -m venv poc_virtual_env # the name of the virtual environment can be altered as per your preference
+
+Step 2: Activate the virtual environment
+Run the command ${virtual_environment_name}\Scripts\activate
+
+Step 3: Install the necessary requirements from the poc_fyp\backend\requirements.txt
+
+Step 4: Run the command to install the requirements
+pip install -r requirements.txt or pip3 install -r requirements.txt
+#make the alteration of the path as per the directory
+
+Step 5: Start the backend
+Run python poc_fyp\backend\app.py # make the alterations as per the directory path
+
+Step 6: Start the Front end
+Open App.js in 'Open Integrated Terminal' Option
+Run the command npm start
+
+
+
+
+
+
+
+
